@@ -1,0 +1,29 @@
+from flask import Flask, render_template, request, redirect, url_for
+
+app3= Flask(__name__)
+
+registered_users = {}
+
+organizations = ["O A", "O B", "O C", "O D", "O E"]
+
+@app3.route('/', methods=['GET', 'POST'])
+def home():
+    if request.method == 'POST':
+        name = request.form.get('name')
+        organization = request.form.get('organization')
+
+        if name and organization in organizations:
+            registered_users[name] = organization
+            return redirect(url_for('registered'))
+        else:
+            error_message = "Invalid"
+            return render_template('home.html', organizations=organizations, error_message=error_message)
+    
+    return render_template('home.html', organizations=organizations)
+
+@app3.route('/registered')
+def registered():
+    return render_template('registered.html', registered_users=registered_users)
+
+if __name__ == '__main__':
+    app3.run(debug=True)

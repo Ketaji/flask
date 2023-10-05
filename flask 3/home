@@ -1,0 +1,19 @@
+{% extends "1" %}
+
+{% block content %}
+    <form method="POST">
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" required>
+        <label for="organization">Organization:</label>
+        <select name="organization" id="organization" required>
+            <option value="" disabled selected>Select an organization</option>
+            {% for org in organizations %}
+                <option value="{{ org }}">{{ org }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Register">
+    </form>
+    {% if error_message %}
+        <p class="error">{{ error_message }}</p>
+    {% endif %}
+{% endblock %}

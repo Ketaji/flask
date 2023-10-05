@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Organizations</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/registered">Registered Users</a></li>
+        </ul>
+    </nav>
+    <h1>Student Organizations</h1>
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

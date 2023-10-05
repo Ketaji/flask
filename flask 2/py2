@@ -1,0 +1,24 @@
+from flask import Flask, request, render_template
+
+app2 = Flask(__name__)
+
+@app2.route('/', methods=['GET', 'POST'])
+def h():
+    if request.method == 'POST':
+        input_number = request.form.get('number')
+        result = check(input_number)
+        return render_template('result.html', result=result)
+    return render_template('home.html')
+
+def check(input_number):
+    try:
+        number = int(input_number)
+        if number % 2 == 0:
+            return f"{number} is an even number."
+        else:
+            return f"{number} is an odd number."
+    except ValueError:
+        return f"'{input_number}' is not an integer."
+
+if __name__ == '__main__':
+    app2.run()
